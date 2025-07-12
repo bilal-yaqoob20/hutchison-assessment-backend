@@ -7,7 +7,10 @@ import authRoutes from "./routes/auth.js";
 
 dotenv.config();
 const app = express();
-const allowedOrigins = [process.env.FRONTEND_URL];
+const allowedOrigins = [
+  process.env.FRONTEND_URL_LIVE,
+  process.env.FRONTEND_URL_LOCAL,
+];
 app.use(
   cors({
     origin: allowedOrigins,
