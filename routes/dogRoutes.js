@@ -10,9 +10,10 @@ router.use(authenticateToken);
 router.get("/", async (req, res) => {
   const limit = parseInt(req.query.limit);
   const offset = parseInt(req.query.offset);
+  const search = req.query.search || "";
   try {
-    const dogs = await Dog.find().skip(offset).limit(limit);
-
+    const query = search ? { breed: { $regex: search, $options: "i" } } : {};
+    const dogs = await Dog.find(query).skip(offset).limit(limit);
     const validated = dogs.map((dog) => {
       const { value } = dogResponseSchema.validate(dog);
       return value;
