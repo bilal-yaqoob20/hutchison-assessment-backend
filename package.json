@@ -6,7 +6,13 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test:register && npm run test:login && npm run test:get && npm run test:create && npm run test:edit && npm run test:delete",
+    "test:create": "node --experimental-vm-modules node_modules/jest/bin/jest.js tests/dogTests/createDog.test.js --runInBand",
+    "test:edit": "node --experimental-vm-modules node_modules/jest/bin/jest.js tests/dogTests/editDog.test.js --runInBand",
+    "test:delete": "node --experimental-vm-modules node_modules/jest/bin/jest.js tests/dogTests/deleteDog.test.js --runInBand",
+    "test:get": "node --experimental-vm-modules node_modules/jest/bin/jest.js tests/dogTests/getDogs.test.js --runInBand",
+    "test:login": "node --experimental-vm-modules node_modules/jest/bin/jest.js tests/authTests/login.test.js --runInBand",
+    "test:register": "node --experimental-vm-modules node_modules/jest/bin/jest.js tests/authTests/register.test.js --runInBand"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +28,9 @@
     "mongoose": "^8.16.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.1.4",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.3"
   }
 }
